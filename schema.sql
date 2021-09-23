@@ -52,6 +52,3 @@ INSERT INTO animals (name) VALUES ('Agumon'), ('Gabumon'), ('Pikachu'), ('Devimo
 ALTER TABLE owners ADD COLUMN email VARCHAR(120);
 INSERT INTO visits (animal_id, vet_id, date_of_visit) SELECT * FROM (SELECT id FROM animals) animal_ids, (SELECT id FROM vets) vets_ids, generate_series('1980-01-01'::timestamp, '2021-01-01', '4 hours') visit_timestamp;
 insert into owners (full_name, email) select 'Owner ' || generate_series(1,2500000), 'owner_' || generate_series(1,2500000) || '@mail.com';
-CREATE INDEX animal_index ON visits (animal_id);
-CREATE INDEX vet_index ON visits (vet_id);
-CREATE INDEX owners_index ON owners (email);
